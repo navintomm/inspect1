@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".ui.ResultsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inspection Results"
+            android:textColor="@color/violet_700"
+            android:textSize="26sp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Result image -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/resultImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Result image with detected spots" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Stats card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Spots detected -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Spots Detected"
+                        android:textColor="#555555"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultSpots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/violet_700"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-bold"
+                        tools:text="6" />
+
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#F0F0F0" android:layout_marginBottom="16dp" />
+
+                <!-- Background colour -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Background Colour"
+                        android:textColor="#555555"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:id="@+id/resultColorSwatch"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/bg_color_swatch"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvResultBgColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/violet_700"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif-bold"
+                        tools:text="White" />
+
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#F0F0F0" android:layout_marginBottom="16dp" />
+
+                <!-- Sensitivity -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sensitivity"
+                        android:textColor="#555555"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultSensitivity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/violet_700"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif-bold"
+                        tools:text="50%" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Action buttons -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNewInspection"
+            style="@style/FilledVioletBtn"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="New Inspection"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBackToHome"
+            style="@style/OutlineVioletBtn"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Back to Home" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

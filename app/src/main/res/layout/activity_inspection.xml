@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".ui.InspectionActivity">
+
+    <!-- ======================================================================
+         1. CAMERA PREVIEW  (full screen, bottom layer)
+         ====================================================================== -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/cameraPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleType="fillCenter" />
+
+    <!-- ======================================================================
+         2. SELECTION OVERLAY  (transparent, on top of camera)
+         ====================================================================== -->
+    <com.colorinspector.app.ui.views.SelectionOverlayView
+        android:id="@+id/selectionOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- ======================================================================
+         3. DETECTION OVERLAY  (bounding boxes, on top of camera)
+         ====================================================================== -->
+    <com.colorinspector.app.ui.views.DetectionOverlayView
+        android:id="@+id/detectionOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- ======================================================================
+         4. TOP STATUS BAR
+         ====================================================================== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top">
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#AA000000"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:padding="10dp"
+            android:gravity="center"
+            tools:text="Select inspection area and press Confirm Area" />
+
+        <TextView
+            android:id="@+id/tvSpotCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@drawable/bg_badge"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:visibility="gone"
+            tools:text="Spots Detected: 4" />
+
+    </LinearLayout>
+
+    <!-- ======================================================================
+         5. BOTTOM PANELS  (only one is visible at a time)
+         ====================================================================== -->
+
+    <!-- ── PANEL A: Shape Selection (AREA_SELECTION phase) ── -->
+    <LinearLayout
+        android:id="@+id/panelShapeSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@drawable/bg_bottom_panel"
+        android:padding="16dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Inspection Area"
+            android:textColor="@color/violet_700"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Shape chips -->
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCircle"
+                style="@style/ShapeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⬤  Circle" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOval"
+                style="@style/ShapeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⬭  Oval" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSquare"
+                style="@style/ShapeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="■  Square" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipRectangle"
+                style="@style/ShapeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▬  Rectangle"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFreehand"
+                style="@style/ShapeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✏  Freehand" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Freehand controls -->
+        <LinearLayout
+            android:id="@+id/freehandControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFreehandClear"
+                style="@style/OutlineVioletBtn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Clear"
+                android:layout_marginEnd="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFreehandUndo"
+                style="@style/OutlineVioletBtn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Undo"
+                android:layout_marginEnd="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFreehandComplete"
+                style="@style/FilledVioletBtn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Done ✓" />
+
+        </LinearLayout>
+
+        <!-- Confirm Area button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmArea"
+            style="@style/FilledVioletBtn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Confirm Area →"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+
+    <!-- ── PANEL B: Background Colour (BACKGROUND_SAMPLING phase) ── -->
+    <LinearLayout
+        android:id="@+id/panelBgColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@drawable/bg_bottom_panel"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Background Colour"
+            android:textColor="@color/violet_700"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Detected bg colour display -->
+        <LinearLayout
+            android:id="@+id/bgColorGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp">
+
+            <View
+                android:id="@+id/tvBgColorSwatch"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_color_swatch"
+                android:layout_marginEnd="12dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Detected colour"
+                    android:textColor="#777777"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvBgColorLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/violet_700"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="White" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPickColor"
+                style="@style/OutlineVioletBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Change" />
+
+        </LinearLayout>
+
+        <!-- Hint to tap for sampling -->
+        <TextView
+            android:id="@+id/tvBgColorSample"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap on a clean part of the object to sample its colour"
+            android:textColor="#7B1FA2"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:background="@drawable/bg_hint_box"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Start Detection button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartDetection"
+            style="@style/FilledVioletBtn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="▶  Start Detection"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- ── PANEL C: Detection Controls (DETECTING / PAUSED phase) ── -->
+    <LinearLayout
+        android:id="@+id/panelDetectionControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@drawable/bg_bottom_panel"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <!-- Control buttons row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPause"
+                style="@style/OutlineVioletBtn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="⏸ Pause"
+                android:layout_marginEnd="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnResume"
+                style="@style/FilledVioletBtn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="▶ Resume"
+                android:visibility="gone"
+                android:layout_marginEnd="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStop"
+                style="@style/OutlineVioletBtn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="⏹ Stop"
+                android:layout_marginEnd="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReset"
+                style="@style/OutlineVioletBtn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="↺ Reset" />
+
+        </LinearLayout>
+
+        <!-- Sensitivity -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sensitivity"
+            android:textColor="@color/violet_700"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <SeekBar
+                android:id="@+id/seekSensitivity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="100"
+                android:progress="50"
+                android:progressTint="@color/violet_500"
+                android:thumbTint="@color/violet_700" />
+
+            <TextView
+                android:id="@+id/tvSensitivityValue"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/violet_700"
+                android:textSize="13sp"
+                android:gravity="end"
+                tools:text="50%" />
+
+        </LinearLayout>
+
+        <!-- Min spot size -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Min Spot Size"
+            android:textColor="@color/violet_700"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <SeekBar
+                android:id="@+id/seekMinSize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="100"
+                android:progress="16"
+                android:progressTint="@color/violet_500"
+                android:thumbTint="@color/violet_700" />
+
+            <TextView
+                android:id="@+id/tvMinSizeValue"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/violet_700"
+                android:textSize="13sp"
+                android:gravity="end"
+                tools:text="400px²" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

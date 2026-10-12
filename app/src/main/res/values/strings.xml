@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Color Inspector</string>
+    <string name="btn_start">Start Inspection</string>
+    <string name="btn_confirm">Confirm Area</string>
+    <string name="btn_start_detection">Start Detection</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_resume">Resume</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_reset">Reset</string>
+    <string name="label_sensitivity">Sensitivity</string>
+    <string name="label_min_size">Min Spot Size</string>
+    <string name="label_spots_detected">Spots Detected: %d</string>
+    <string name="label_bg_colour">Background Colour: %s</string>
+</resources>

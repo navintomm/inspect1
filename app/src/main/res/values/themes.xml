@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme -->
+    <style name="Theme.ColorInspector" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/violet_700</item>
+        <item name="colorPrimaryVariant">@color/violet_900</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/violet_400</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:windowBackground">@color/background_white</item>
+        <item name="android:statusBarColor">@color/violet_900</item>
+        <item name="android:navigationBarColor">@color/violet_900</item>
+    </style>
+
+    <!-- Shape chip style -->
+    <style name="ShapeChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_bg_state</item>
+        <item name="chipStrokeColor">@color/violet_400</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/chip_text_state</item>
+        <item name="chipCornerRadius">20dp</item>
+    </style>
+
+    <!-- Filled violet button -->
+    <style name="FilledVioletBtn" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/violet_700</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+
+    <!-- Outline violet button -->
+    <style name="OutlineVioletBtn" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/violet_700</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="android:textColor">@color/violet_700</item>
+        <item name="rippleColor">@color/violet_100</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

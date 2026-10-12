@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Outer circle bg -->
+    <path
+        android:pathData="M60,60m-54,0a54,54 0,1 1,108 0a54,54 0,1 1,-108 0"
+        android:fillColor="#33FFFFFF" />
+
+    <!-- Magnifying glass handle -->
+    <path
+        android:pathData="M75,75 L90,90"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="7"
+        android:strokeLineCap="round" />
+
+    <!-- Magnifying glass circle -->
+    <path
+        android:pathData="M55,55m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6"
+        android:fillColor="#00000000" />
+
+    <!-- Spot inside lens (simulating detected spot) -->
+    <path
+        android:pathData="M49,52 L61,52 L61,60 L49,60 Z"
+        android:fillColor="#FFD740" />
+
+    <path
+        android:pathData="M53,56 L59,56 L59,62 L53,62 Z"
+        android:fillColor="#FF6D00" />
+
+</vector>

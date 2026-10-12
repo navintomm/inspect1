@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    "More Colors…" dialog: HEX field + RGB sliders with live preview.
+    No HSV/HSL — pure HEX / R G B entry only.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="20dp">
+
+    <!-- Live preview swatch -->
+    <View
+        android:id="@+id/customPreviewSwatch"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_color_swatch"
+        android:layout_marginBottom="16dp" />
+
+    <!-- HEX entry -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HEX"
+        android:textColor="#444444"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="4dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etHex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="#RRGGBB"
+            android:inputType="text"
+            android:maxLength="7"
+            android:textAllCaps="true"
+            android:fontFamily="monospace" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Red -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:text="R"
+            android:textColor="#CC3333"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <SeekBar
+            android:id="@+id/seekRed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="255"
+            android:progressTint="#CC3333"
+            android:thumbTint="#CC3333" />
+
+        <TextView
+            android:id="@+id/tvRedVal"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            android:text="255" />
+
+    </LinearLayout>
+
+    <!-- Green -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:text="G"
+            android:textColor="#2E7D32"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <SeekBar
+            android:id="@+id/seekGreen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="255"
+            android:progressTint="#2E7D32"
+            android:thumbTint="#2E7D32" />
+
+        <TextView
+            android:id="@+id/tvGreenVal"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            android:text="255" />
+
+    </LinearLayout>
+
+    <!-- Blue -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:text="B"
+            android:textColor="#1565C0"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <SeekBar
+            android:id="@+id/seekBlue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="255"
+            android:progressTint="#1565C0"
+            android:thumbTint="#1565C0" />
+
+        <TextView
+            android:id="@+id/tvBlueVal"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            android:text="255" />
+
+    </LinearLayout>
+
+</LinearLayout>

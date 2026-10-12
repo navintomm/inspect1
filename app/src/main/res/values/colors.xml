@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background_white">#FAFAFA</color>
+
+    <!-- Violet palette -->
+    <color name="violet_50">#F3E5F5</color>
+    <color name="violet_100">#E1BEE7</color>
+    <color name="violet_200">#CE93D8</color>
+    <color name="violet_300">#BA68C8</color>
+    <color name="violet_400">#AB47BC</color>
+    <color name="violet_500">#9C27B0</color>
+    <color name="violet_600">#8E24AA</color>
+    <color name="violet_700">#7B1FA2</color>
+    <color name="violet_800">#6A1B9A</color>
+    <color name="violet_900">#4A148C</color>
+
+    <!-- Deep violet for gradient -->
+    <color name="deep_violet">#311B92</color>
+    <color name="mid_violet">#7B1FA2</color>
+</resources>

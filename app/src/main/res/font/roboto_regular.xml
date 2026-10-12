@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Font files must be placed in this directory.
+    Download Roboto from https://fonts.google.com/specimen/Roboto and add:
+      - roboto_regular.ttf
+      - roboto_bold.ttf
+
+    Alternatively, use downloadable fonts from Google Fonts by replacing
+    the font files with a font provider XML. The app falls back to the
+    system sans-serif if the font files are missing.
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:fontProviderAuthority="com.google.android.gms.fonts"
+    app:fontProviderPackage="com.google.android.gms"
+    app:fontProviderQuery="Roboto"
+    app:fontProviderCerts="@array/com_google_android_gms_fonts_certs">
+</font-family>

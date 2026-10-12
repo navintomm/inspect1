@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Word-style colour-picker bottom-sheet layout.
+    Sections:
+      1. Title bar
+      2. Selected-colour preview strip
+      3. Theme Colors label + grid
+      4. Standard Colors label + grid
+      5. "More Colors…" row
+      6. Cancel / Use Colour buttons
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:paddingBottom="16dp">
+
+    <!-- ── Drag handle ── -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="#CCCCCC"
+        android:importantForAccessibility="no" />
+
+    <!-- ── Title ── -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Background Colour"
+        android:textColor="#7B1FA2"
+        android:textSize="17sp"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="12dp" />
+
+    <!-- ── Selected colour preview ── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="12dp">
+
+        <View
+            android:id="@+id/previewSwatch"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_color_swatch"
+            android:layout_marginEnd="12dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvColorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7B1FA2"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-medium"
+                android:text="White" />
+
+            <TextView
+                android:id="@+id/tvColorHex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:text="#FFFFFF   RGB(255, 255, 255)" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ── Divider ── -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0E6F8"
+        android:layout_marginBottom="12dp" />
+
+    <!-- ── Theme Colors ── -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Theme Colors"
+        android:textColor="#444444"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="20dp"
+        android:paddingBottom="6dp" />
+
+    <!-- 10-column × 6-row theme swatch grid -->
+    <com.colorinspector.app.ui.views.ColorSwatchGridView
+        android:id="@+id/themeColorGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp" />
+
+    <!-- ── Standard Colors ── -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Standard Colors"
+        android:textColor="#444444"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="20dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="6dp" />
+
+    <!-- 10-column × 1-row standard swatch strip -->
+    <com.colorinspector.app.ui.views.ColorSwatchGridView
+        android:id="@+id/standardColorGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="4dp" />
+
+    <!-- ── More Colors… ── -->
+    <TextView
+        android:id="@+id/tvMoreColors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⊕  More Colors…"
+        android:textColor="#7B1FA2"
+        android:textSize="13sp"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="?attr/selectableItemBackground" />
+
+    <!-- ── Divider ── -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0E6F8"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- ── Action buttons ── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelColor"
+            style="@style/OutlineVioletBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="Cancel"
+            android:layout_marginEnd="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUseColor"
+            style="@style/FilledVioletBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="Use Colour" />
+
+    </LinearLayout>
+
+</LinearLayout>
